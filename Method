@@ -1,0 +1,349 @@
+// Student Name:	Kerry Agabi
+// Student ID:		C00249804
+// Purpose:			A simple program that uses a method to check if an inputted number is even or not
+
+class jlab11
+{  
+	public static void main(String[] args)
+	{
+		System.out.println("-------------------------------------------");
+		String sentence = "This i$ an aardvaAr yeEeeAs onDO qwerty XYZ9";
+		System.out.print("<<"+sentence+">>");
+		sentenceStats(sentence);
+		
+	}
+
+	public static void sentenceStats(String sentence)
+	{
+		
+		System.out.println("\n------------Sentence Statistics------------");
+		System.out.println("The number of valid words					:"+validCount(sentence));
+		System.out.println("The valid words are						:"+validWords(sentence));
+		System.out.println("The word with the largest number of vowels			:"+vowelCount(sentence));
+		System.out.println("The word with the largest number of consonants			:"+consCount(sentence));
+		System.out.println("The shortest word with an equal no of vowels and consonants	:"+equalWord(sentence));
+		System.out.println("--------------------------------------------");
+	}
+
+	public static int validCount(String string)
+	{
+		String substring;
+		int trueCounter = 0;
+		int index = 0;
+		int subLength = 0;
+		int currentSpacePos = 0;
+		int lastSpacePos = 0;
+		int wordCounter = 0;
+		int subindex= 0;
+		
+		if(string.charAt(index) != ' ');
+		{
+	
+			string = ' ' + string;
+			lastSpacePos = string.lastIndexOf(' ');
+			
+		}
+	
+	if(string.charAt(string.length()-1) != ' ');
+		{
+
+			string = string + ' ';
+
+
+
+		}
+	lastSpacePos = string.indexOf(' ');
+		
+	for(index = 1;index <= string.length()-1;index++)
+	{
+
+		if(string.charAt(index) == ' ')
+		{
+
+			currentSpacePos = index;
+			substring = string.substring(lastSpacePos,currentSpacePos+1);
+			subLength = substring.length()-1;
+			lastSpacePos = index;
+			
+   			for(subindex = 0;subindex <= subLength;subindex++)
+	   			{
+					
+					if(substring.charAt(subindex) >= 'A' && substring.charAt(subindex) <= 'Z' || substring.charAt(subindex) >= 'a' && substring.charAt(subindex) <= 'z')
+						{
+							trueCounter++;
+						}
+					else if(substring.charAt(subindex) == ' ')
+						{
+
+							if(trueCounter == substring.length()-2)
+								{
+									substring = substring.substring(1,substring.length());
+									wordCounter++;
+								}
+						
+							trueCounter = 0;
+						}
+					else
+						{
+							trueCounter--;
+						}
+		
+				}
+		}
+	
+	}
+	return wordCounter;
+	}
+	
+	
+	
+	public static String validWords(String string)
+	{
+		String substring = "";
+		int trueCounter = 0;
+		int index = 0;
+		int subLength = 0;
+		int currentSpacePos = 0;
+		int lastSpacePos = 0;
+		int wordCounter = 0;
+		int subindex= 0;
+		String answer = "";
+		if(string.charAt(index) != ' ');
+		{
+	
+			string = ' ' + string;
+			lastSpacePos = string.lastIndexOf(' ');
+			
+		}
+	
+	if(string.charAt(string.length()-1) != ' ');
+		{
+
+			string = string + ' ';
+
+
+
+		}
+	lastSpacePos = string.indexOf(' ');
+		
+	for(index = 1;index <= string.length()-1;index++)
+	{
+
+		if(string.charAt(index) == ' ')
+		{
+
+			currentSpacePos = index;
+			substring = string.substring(lastSpacePos+1,currentSpacePos+1);
+			subLength = substring.length()-1;
+			lastSpacePos = index;
+			
+   			for(subindex = 0;subindex <= subLength;subindex++)
+	   			{		
+					if(substring.charAt(subindex) >= 'A' && substring.charAt(subindex) <= 'Z' || substring.charAt(subindex) >= 'a' && substring.charAt(subindex) <= 'z')
+						{
+							trueCounter++;
+						}
+					else if(substring.charAt(subindex) == ' ')
+						{
+							if(trueCounter == substring.length()-1)
+								{
+									answer += substring;
+
+									wordCounter++;
+								}
+						
+							trueCounter = 0;
+						}
+					else
+						{
+							trueCounter--;
+						}
+		
+				}
+		}
+	
+	}
+		
+		return answer;
+	}
+	
+	
+	public static String vowelCount(String string)
+	{
+		String substring = "";
+		int trueCounter = 0;
+		int index = 0;
+		int subLength = 0;
+		int currentSpacePos = 0;
+		int lastSpacePos = 0;
+		int currentHigh = 0;
+		int subindex= 0;
+		int vowelCounter = 0;
+		String answer = "";
+		if(string.charAt(index) != ' ');
+		{
+	
+			string = ' ' + string;
+			lastSpacePos = string.lastIndexOf(' ');
+			
+		}
+	
+	if(string.charAt(string.length()-1) != ' ');
+		{
+
+			string = string + ' ';
+
+
+
+		}
+	lastSpacePos = string.indexOf(' ');
+		
+		
+		for(index = 1;index <= string.length()-1;index++)
+	{
+
+		if(string.charAt(index) == ' ')
+		{
+
+			currentSpacePos = index;
+			substring = string.substring(lastSpacePos+1,currentSpacePos+1);
+			subLength = substring.length()-1;
+			lastSpacePos = index;
+			
+   			for(subindex = 0;subindex <= subLength;subindex++)
+	   			{		
+					if(substring.charAt(subindex) == 'A' || substring.charAt(subindex) == 'E' || substring.charAt(subindex) == 'I' || substring.charAt(subindex) == 'O' || substring.charAt(subindex) == 'U')
+						{
+							vowelCounter++;
+						}
+					else if(substring.charAt(subindex) == ' ')
+						{
+							if(vowelCounter >= currentHigh)
+								{
+									answer = substring;
+									currentHigh = vowelCounter;
+								}
+						
+							vowelCounter = 0;
+						}
+		
+				}
+		}
+	
+	}		
+		return answer;
+	}
+	
+	
+	
+	public static String consCount(String string)
+	{
+		String substring = "";
+		int trueCounter = 0;
+		int index = 0;
+		int subLength = 0;
+		int currentSpacePos = 0;
+		int lastSpacePos = 0;
+		int currentHigh = 0;
+		int subindex= 0;
+		int consCounter = 0;
+		String answer = "";
+		if(string.charAt(index) != ' ');
+		{
+	
+			string = ' ' + string;
+			lastSpacePos = string.lastIndexOf(' ');
+			
+		}
+	
+	if(string.charAt(string.length()-1) != ' ');
+		{
+
+			string = string + ' ';
+
+
+
+		}
+	lastSpacePos = string.indexOf(' ');
+		
+		
+		for(index = 1;index <= string.length()-1;index++)
+	{
+
+		if(string.charAt(index) == ' ')
+		{
+
+			currentSpacePos = index;
+			substring = string.substring(lastSpacePos+1,currentSpacePos+1);
+			subLength = substring.length()-1;
+			lastSpacePos = index;
+   			for(subindex = 0;subindex <= subLength;subindex++)
+	   			{		
+					if(substring.charAt(subindex) == ' ')
+						{
+							if(consCounter >= currentHigh)
+								{
+									answer = substring;
+									currentHigh = consCounter;
+								}
+						
+							consCounter = 0;
+						}
+					
+					else if((substring.charAt(subindex) != 'A' && substring.charAt(subindex) != 'E' && substring.charAt(subindex) != 'I' && substring.charAt(subindex) != 'O' && substring.charAt(subindex) != 'U') && (substring.charAt(subindex) != 'a' && substring.charAt(subindex) != 'e' && substring.charAt(subindex) != 'i' && substring.charAt(subindex) != 'o' && substring.charAt(subindex) != 'u'))
+						{
+							if(substring.charAt(subindex) >= 'A' && substring.charAt(subindex) <= 'Z' || substring.charAt(subindex) >= 'a' && substring.charAt(subindex) <= 'z')
+							{
+								consCounter++;							
+							}
+						}
+		
+				}
+		}
+	
+	}		
+		return answer;
+	
+	}
+	
+	
+	
+	public static String equalWord(String sentence)
+	{
+		
+		int index = 0;
+		int checkVowel = 0;
+		int checkCons = 0;
+		String theString = "";
+		int currentSpacePos = 0;
+		int lastSpacePos = 0;
+		int subLength = 0;
+		String answer = "";
+		for(index = 1;index <= sentence.length()-1;index++)
+		{
+
+			if(sentence.charAt(index) == ' ')
+			{
+	
+				currentSpacePos = index;
+				theString = sentence.substring(lastSpacePos,currentSpacePos+1);
+				subLength = theString.length()-1;
+				lastSpacePos = index;
+				
+				checkVowel = vowelCount(theString).length();
+				checkCons = consCount(theString).length();
+				
+				if (checkVowel == checkCons)
+					{
+					
+					answer = theString;
+					
+					}
+			
+			}
+		}
+		return answer;
+	}
+	
+}
+
